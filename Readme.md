@@ -12,7 +12,7 @@ Since you have good reasons to create the resources of your stack in your prefer
 ## Prerequisites
 * AWSCloudFormationStackSetAdministrationRole and AWSCloudFormationStackSetExecutionRole exists
 
-  If not, install them from [StackSetsPublic](StackSetsPublic).
+  If not, install them from [StackSetsRoles](StackSetsRoles).
 * The DNS for your domain needs to be defined with Route53
 * You need the required access rights to deploy the resources in the stack and stackSet
 
@@ -34,12 +34,13 @@ _parameters.json_
 ```bash
 export AWS_PROFILE=myProfile
 domain=example.com
+site=myblog
 hostedZoneId=$(aws route53 list-hosted-zones-by-name \
 --dns-name $domain \
 --query "HostedZones[0].Id" \
 --output text | \
 cut -d/ -f3)
-echo $hostedZoneId
+site=$site domain=$domain hostedZoneId=$hostedZoneId envsubst < parameters.template.json  > paramteres.json
 ```
 ## Deploy
 ```bash

@@ -54,7 +54,7 @@ Resources:
               - !Ref "AWS::AccountId"
           Regions:
             - us-east-1
-      StackSetName: CloudfrontACM
+      StackSetName: ${AWS::StackName}-CloudfrontACM
       Parameters:
         - ParameterKey: DomainName
           ParameterValue: !Ref DomainName

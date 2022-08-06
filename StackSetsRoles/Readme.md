@@ -19,6 +19,8 @@ AWSAccountId=$(aws sts get-caller-identity --query "Account" --output text)
 ```
 
 ## Slave accounts
+Even when master and Slave accounts are the same, this role needs to be provisioned.
+
 Deploy [AWSCloudFormationStackSetExecutionRole](AWSCloudFormationStackSetExecutionRole.yml) in each slave accounts.
 ```bash
 export AWS_PROFILE=master-account
